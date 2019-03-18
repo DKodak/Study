@@ -13,7 +13,7 @@ public class EmailTest {
     public static final String SMTPSERVER = "smtp.163.com";
     public static final String SMTPPORT = "465";
     public static final String ACCOUT = "k2270301642@163.com";
-    public static final String PWD = "k990912";
+    public static final String PWD = "  ";
 
     @Test
     public void testSendEmail() throws Exception {
