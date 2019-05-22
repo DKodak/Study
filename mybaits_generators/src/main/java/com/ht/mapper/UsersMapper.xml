@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.pojo.Users" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="marry" property="marry" jdbcType="VARCHAR" />
+    <result column="aihao" property="aihao" jdbcType="VARCHAR" />
+    <result column="jianjie" property="jianjie" jdbcType="VARCHAR" />
+    <result column="deptno" property="deptno" jdbcType="INTEGER" />
+    <result column="hiredate" property="hiredate" jdbcType="VARCHAR" />
+    <result column="book" property="book" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uname, pwd, sex, marry, aihao, jianjie, deptno, hiredate, book
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ht.pojo.UsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ht.pojo.UsersExample" >
+    delete from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ht.pojo.Users" >
+    insert into users (id, uname, pwd, 
+      sex, marry, aihao, 
+      jianjie, deptno, hiredate, 
+      book)
+    values (#{id,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{marry,jdbcType=VARCHAR}, #{aihao,jdbcType=VARCHAR}, 
+      #{jianjie,jdbcType=VARCHAR}, #{deptno,jdbcType=INTEGER}, #{hiredate,jdbcType=VARCHAR}, 
+      #{book,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.pojo.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="marry != null" >
+        marry,
+      </if>
+      <if test="aihao != null" >
+        aihao,
+      </if>
+      <if test="jianjie != null" >
+        jianjie,
+      </if>
+      <if test="deptno != null" >
+        deptno,
+      </if>
+      <if test="hiredate != null" >
+        hiredate,
+      </if>
+      <if test="book != null" >
+        book,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="aihao != null" >
+        #{aihao,jdbcType=VARCHAR},
+      </if>
+      <if test="jianjie != null" >
+        #{jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="deptno != null" >
+        #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="hiredate != null" >
+        #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="book != null" >
+        #{book,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ht.pojo.UsersExample" resultType="java.lang.Integer" >
+    select count(*) from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update users
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uname != null" >
+        uname = #{record.uname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marry != null" >
+        marry = #{record.marry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aihao != null" >
+        aihao = #{record.aihao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jianjie != null" >
+        jianjie = #{record.jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptno != null" >
+        deptno = #{record.deptno,jdbcType=INTEGER},
+      </if>
+      <if test="record.hiredate != null" >
+        hiredate = #{record.hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.book != null" >
+        book = #{record.book,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update users
+    set id = #{record.id,jdbcType=INTEGER},
+      uname = #{record.uname,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      marry = #{record.marry,jdbcType=VARCHAR},
+      aihao = #{record.aihao,jdbcType=VARCHAR},
+      jianjie = #{record.jianjie,jdbcType=VARCHAR},
+      deptno = #{record.deptno,jdbcType=INTEGER},
+      hiredate = #{record.hiredate,jdbcType=VARCHAR},
+      book = #{record.book,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.pojo.Users" >
+    update users
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        marry = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="aihao != null" >
+        aihao = #{aihao,jdbcType=VARCHAR},
+      </if>
+      <if test="jianjie != null" >
+        jianjie = #{jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="deptno != null" >
+        deptno = #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="hiredate != null" >
+        hiredate = #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="book != null" >
+        book = #{book,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.pojo.Users" >
+    update users
+    set uname = #{uname,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      aihao = #{aihao,jdbcType=VARCHAR},
+      jianjie = #{jianjie,jdbcType=VARCHAR},
+      deptno = #{deptno,jdbcType=INTEGER},
+      hiredate = #{hiredate,jdbcType=VARCHAR},
+      book = #{book,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
