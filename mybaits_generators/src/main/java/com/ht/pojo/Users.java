@@ -100,4 +100,20 @@ public class Users {
     public void setBook(String book) {
         this.book = book == null ? null : book.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", uname='" + uname + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", sex='" + sex + '\'' +
+                ", marry='" + marry + '\'' +
+                ", aihao='" + aihao + '\'' +
+                ", jianjie='" + jianjie + '\'' +
+                ", deptno=" + deptno +
+                ", hiredate='" + hiredate + '\'' +
+                ", book='" + book + '\'' +
+                '}';
+    }
 }

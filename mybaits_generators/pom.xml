@@ -52,6 +52,19 @@
     </dependencies>
 
     <build>
+        <!-- mapper.xml是放在src/main/java目录下，需配置以下-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!--配置Mybatis反向代理的插件-->
             <plugin>

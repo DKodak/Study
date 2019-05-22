@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="mybaits/jdbc.properties"/>
+
+
+    <!--这是扫描该指定的文件下的所有-->
+    <typeAliases>
+        <package name="com.ht.pojo"></package>
+    </typeAliases>
+
+
+    <!--这里修改环境-->
+    <environments default="development">
+
+        <!--environment环境设置  可以拥有多个环境-->
+        <environment id="development">
+            <!--transactionManager事务管理器    可以jdbc和managed(托管)-->
+            <transactionManager type="JDBC" />
+
+            <!--数据源   unpooled没有连接池     pooled用上了连接池   jndi使用应用服务器配置jndi数据源获取数据库链接-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClassName}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+
+        <package name="com.ht.mapper"></package>
+    </mappers>
+</configuration>
