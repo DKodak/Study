@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+        <!--<h3 th:if="${user!=null}" >-->
+        <p th:if="${session.user!=null}" th:text="${session.user.name}"> </p>
+
+        <p th:if="${session.user==null}">
+            <a href="/tologin">登录</a>
+        </p>
+
+        <!--</h3>-->
+        <!--<th th:text="${session.user.name}"></th>-->
+        <br>
+        <h5 ><a href="loginout">注销</a></h5>
+        <hr>
+<div shiro:hasPermission="user:add">添加  <a href="/add">添加</a><br></div>
+<div shiro:hasPermission="user:upd">修改  <a href="/upd">修改</a><br></div>
+</body>
+</html>
