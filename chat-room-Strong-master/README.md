@@ -23,4 +23,4 @@
 
 ### 5. 项目源码
 
-* https://github.com/wonderheng/chat-room-strong
+* https://github.com/DKodak/Study/tree/master/chat-room-Strong-master
