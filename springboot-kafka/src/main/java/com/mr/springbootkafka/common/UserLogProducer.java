@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Kodak
- * @company 沐融
  * @create 2019-07-08 -15:07
  */
 @Component
